@@ -2,12 +2,12 @@
 name = "IonoProbe"
 version = "1.0.0"
 authors = [
-  { name="Javier Cebrián", email="jac.cebrian[@]gmail.com" },
+  { name="Javier Cebrián", email="jac.cebrian@gmail.com" },
 ]
 description = "Ionospheric study tools"
 readme = "README.md"
 requires-python = ">=3.8"
-dependencies = {file = ["requirements.txt"]}
+dependencies = []
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
