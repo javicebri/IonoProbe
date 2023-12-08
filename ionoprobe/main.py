@@ -18,17 +18,14 @@ def main(root):
     exec_dt = dt.datetime.now()
     exec_str = exec_dt.strftime("%Y%m%d_%H%M%S")
 
+    paths_dict = get_paths(root)
+    format_paths(paths_dict, exec_str)
+    create_paths(root, paths_dict)
+
     logger = init_logger(root, exec_str)
 
     logger.info(GLOBAL_VARS.header_art)
     logger.info('Start IONOPROBE: {}'.format(exec_str))
-
-    logger.info('Get paths')
-    paths_dict = get_paths(root)
-    logger.info('Format paths')
-    format_paths(paths_dict, exec_str)
-    logger.info('Create path structure')
-    create_paths(root, paths_dict)
 
     logger.info('Read config file')
     config = load_config(paths_dict)

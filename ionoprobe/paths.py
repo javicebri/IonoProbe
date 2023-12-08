@@ -5,7 +5,6 @@ import os
 def get_paths(root):
     paths_dict = {
         'config': os.path.join(root, 'config'),
-        'config_fn': os.path.join(root, 'config', GLOBAL_VARS.config_file),
         'data': os.path.join(root, 'data'),
         'logs': os.path.join(root, 'logs'),
         'output': os.path.join(root, 'output')
@@ -19,10 +18,6 @@ def format_paths(paths_dict, exec_str):
 
 
 def create_paths(root, paths_dict):
-    output_path = os.path.join(root,'output')
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
-
-    logs_path = os.path.join(root,'logs')
-    if not os.path.exists(logs_path):
-        os.makedirs(logs_path)
+    for path_i in paths_dict:
+        if not os.path.exists(path_i):
+            os.makedirs(path_i)
