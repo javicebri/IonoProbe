@@ -18,4 +18,4 @@ def main(root):
     logger = init_logger(root, exec_str)
 
     logger.info(GLOBAL_VARS.header_art)
-    logger.info('Start scraping: {}'.format(exec_str))
+    logger.info('Start IONOPROBE: {}'.format(exec_str))
