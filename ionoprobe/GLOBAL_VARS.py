@@ -7,4 +7,10 @@ header_art = "\n"\
              "  .88.   `8b  d8' 88  V888 `8b  d8' 88      88 `88. `8b  d8' 88   8D 88.    \n"\
              "Y888888P  `Y88P'  VP   V8P  `Y88P'  88      88   YD  `Y88P'  Y8888P' Y88888P\n"
 
-config_file = "config.json"
+config_fn = "config.json"
+
+#Run dict (realte RUN with function)
+run_dict = {
+    "Download_GOES" : 
+
+}

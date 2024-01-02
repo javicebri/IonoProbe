@@ -2,11 +2,11 @@ import datetime as dt
 import json
 import os
 
-from . import GLOBAL_VARS
+import GLOBAL_VARS
 
 
 def load_config(paths_dict):
-    config_fn = os.path.join(paths_dict['config_fn'], GLOBAL_VARS.config_file)
+    config_fn = os.path.join(paths_dict['config'], GLOBAL_VARS.config_fn)
     with open(config_fn, 'r') as json_file:
         config_dict = json.load(json_file)
     return config_dict

@@ -1,4 +1,4 @@
-from . import GLOBAL_VARS
+import GLOBAL_VARS
 import os
 
 
@@ -21,3 +21,10 @@ def create_paths(root, paths_dict):
     for path_i in paths_dict:
         if not os.path.exists(path_i):
             os.makedirs(path_i)
+
+
+def add_config_paths(root, paths_dict, config):
+    paths_dict['GOES_url'] = config['GOES_url']
+    paths_dict['DIGISONDE_url'] = config['DIGISONDE_url']
+    return paths_dict
+
