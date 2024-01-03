@@ -38,17 +38,4 @@ def req_Digisonde(url):
        logger.warning('REQ ERROR')
 
 
-def download_Digisonde(url):
-    """
-    Iterate reqs
 
-    @param url: The URL to retrieve the file from.
-    @type url: str
-    @return: The content of the retrieved image.
-    @rtype: bytes
-    """
-    res = requests.get(url)
-    if res.status_code == 200:
-        return res.content
-    else:
-       logger.warning('REQ ERROR')

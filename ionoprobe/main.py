@@ -7,11 +7,8 @@ import logging
 from logger import logger
 from paths import get_paths, add_config_paths
 from config import load_config
-from connect.url_connect import req_GOES, req_Digisonde
-from connect.aws_connect import store_in_s3
+from connect.download import download_Digisonde, download_GOES
 
-
-# Start
 
 # Create paths dict
 root = '/home/javier/Projects/IonoProbe/'
@@ -31,10 +28,8 @@ run_steps = config['RUN']
 for step_i in run_steps:
     if step_i == 'Download_GOES':
         download_GOES(paths_dict['GOES_url'])
-        data_df = req_GOES(paths_dict['GOES_url']['url_de'])
     elif step_i == 'Download_DIGISONDE':
         download_Digisonde(paths_dict['DIGISONDE_url'])
-        image_bytes = req_Digisonde(paths_dict['DIGISONDE_url']['url_obsebre'])
 
 # store_in_s3(bucket_name = 'ionoprobe', s3_path = 'GOES', file_name = 'prueba.csv', df = data_df)
 
