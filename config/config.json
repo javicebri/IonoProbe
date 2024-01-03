@@ -13,7 +13,7 @@
       "url_xray": "https://services.swpc.noaa.gov/json/goes/primary/xrays-7-day.json"
     },
     "DIGISONDE_url": {
-      "url_obsebre": "http://dgs.obsebre.es:8081/ionogif//EB040_2023360222001_IO.PNG"
+      "url_obsebre": "http://dgs.obsebre.es:8081/ionogif//EB040_2024003171501_IO.PNG"
     },
 
     "save": ["local","s3"]

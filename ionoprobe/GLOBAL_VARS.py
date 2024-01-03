@@ -11,6 +11,6 @@ config_fn = "config.json"
 
 #Run dict (realte RUN with function)
 run_dict = {
-    "Download_GOES" : 
+    "Download_GOES" : ""
 
 }
