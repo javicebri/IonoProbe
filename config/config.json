@@ -1,0 +1,22 @@
+{
+    "RUN": ["Download_GOES", "Download_DIGISONDE"],
+
+    "GOES_url": {
+      "url_de": "https://services.swpc.noaa.gov/json/goes/primary/differential-electrons-7-day.json",
+      "url_dp": "https://services.swpc.noaa.gov/json/goes/primary/differential-protons-7-day.json",
+      "url_ie": "https://services.swpc.noaa.gov/json/goes/primary/integral-electrons-7-day.json",
+      "url_ip": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-7-day.json",
+      "url_ip_plot": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-plot-7-day.json",
+      "url_mag": "https://services.swpc.noaa.gov/json/goes/primary/magnetometers-7-day.json",
+      "url_xray_back": "https://services.swpc.noaa.gov/json/goes/primary/xray-background-7-day.json",
+      "url_xray_flares": "https://services.swpc.noaa.gov/json/goes/primary/xray-flares-7-day.json",
+      "url_xray": "https://services.swpc.noaa.gov/json/goes/primary/xrays-7-day.json"
+    },
+    "DIGISONDE_url": {
+      "url_obsebre": "http://dgs.obsebre.es:8081/ionogif//EB040_2024003171501_IO.PNG"
+    },
+
+    "save": ["local","s3"]
+
+}
+  
