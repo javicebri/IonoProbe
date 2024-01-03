@@ -14,6 +14,9 @@
     },
     "DIGISONDE_url": {
       "url_obsebre": "http://dgs.obsebre.es:8081/ionogif//EB040_2023360222001_IO.PNG"
-    }
+    },
+
+    "save": ["local","s3"]
+
 }
   

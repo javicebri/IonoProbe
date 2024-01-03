@@ -27,9 +27,9 @@ run_steps = config['RUN']
 
 for step_i in run_steps:
     if step_i == 'Download_GOES':
-        download_GOES(paths_dict['GOES_url'])
+        download_GOES(paths_dict['GOES_url'], config)
     elif step_i == 'Download_DIGISONDE':
-        download_Digisonde(paths_dict['DIGISONDE_url'])
+        download_Digisonde(paths_dict['DIGISONDE_url'], config)
 
 # store_in_s3(bucket_name = 'ionoprobe', s3_path = 'GOES', file_name = 'prueba.csv', df = data_df)
 
