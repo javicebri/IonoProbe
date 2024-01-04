@@ -1,5 +1,5 @@
 {
-    "RUN": ["Download_GOES", "Download_DIGISONDE"],
+    "RUN": ["Download_DIGISONDE"],
 
     "GOES_url": {
       "url_de": "https://services.swpc.noaa.gov/json/goes/primary/differential-electrons-7-day.json",
