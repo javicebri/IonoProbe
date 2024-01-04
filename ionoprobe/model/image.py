@@ -43,7 +43,7 @@ def transform_str_to_df(image_str):
     station_legend = GLOBAL_VARS.station_legend
     station_data = image_list[4].split(" ")
     if not len(station_data) == len(station_legend):
-        logger.error('Error DIGISONDE IMAGE ETL')
+        logger.error('Error station_legend DIGISONDE ETL')
     else:
         station_df = pd.DataFrame([station_data], columns=station_legend)
 

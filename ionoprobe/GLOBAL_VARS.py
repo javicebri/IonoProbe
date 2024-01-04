@@ -11,3 +11,4 @@ config_fn = "config.json"
 
 # DIGISONDE DATA
 station_legend = ['Station', 'YYYY', 'DAY', 'DDD', 'HHNMSS', 'P1', 'FFS', 'S', 'AXN', 'PPS', 'IGA', 'PS']
+f_legend = ['foF2', 'foF1', 'foF1p', 'foFE', 'foFEp', 'fxI', 'foEs', 'fmin']
