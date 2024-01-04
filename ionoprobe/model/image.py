@@ -10,7 +10,9 @@ def get_str_from_image(image_bytes):
     """
     Get text from image in bytes format
     @param image_bytes: Bytes representing the image
+    @type image_bytes: bytes
     @return: Extracted text from the image
+    @rtype: str
     """
     try:
         pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
