@@ -1,5 +1,5 @@
 from logger import logger
-from model.image import get_str_from_image
+from model.image import get_str_from_image, transform_str_to_df
 from connect.url_connect import req_GOES, req_Digisonde
 from connect.aws_connect import store_in_s3
 
@@ -20,6 +20,9 @@ def download_Digisonde(paths_dict, config):
 
         # Extract information of the image
         image_str = get_str_from_image(image_bytes)
+
+        # Transform str in df
+        image_df = transform_str_to_df(image_str)
 
 
         # if config is local save in folder, if is aws save in s3

@@ -9,8 +9,5 @@ header_art = "\n"\
 
 config_fn = "config.json"
 
-#Run dict (realte RUN with function)
-run_dict = {
-    "Download_GOES" : ""
-
-}
+# DIGISONDE DATA
+station_legend = ['Station', 'YYYY', 'DAY', 'DDD', 'HHNMSS', 'P1', 'FFS', 'S', 'AXN', 'PPS', 'IGA', 'PS']
