@@ -1,10 +1,10 @@
 from logger import logger
 from model.image import get_str_from_image, transform_str_to_df
-from connect.url_connect import req_GOES, req_Digisonde
+from connect.url_connect import req_GOES, req_digisonde_image, req_digisonde_plain
 from connect.aws_connect import store_in_s3
 
 
-def download_Digisonde(paths_dict, config):
+def download_digisonde(paths_dict, config):
     """
     Iterate reqs
 
@@ -16,7 +16,7 @@ def download_Digisonde(paths_dict, config):
     @rtype: None
     """
     for path_i in paths_dict.keys():
-        image_bytes = req_Digisonde(paths_dict[path_i])
+        image_bytes = req_digisonde_image(paths_dict[path_i])
 
         # Extract information of the image
         image_str = get_str_from_image(image_bytes)

@@ -7,7 +7,7 @@ import logging
 from logger import logger
 from paths import get_paths, add_config_paths
 from config import load_config
-from connect.download import download_Digisonde, download_GOES
+from connect.download import download_digisonde, download_GOES
 
 def main(root="/"):
     # Create paths dict
@@ -28,7 +28,7 @@ def main(root="/"):
         if step_i == 'Download_GOES':
             download_GOES(paths_dict['GOES_url'], config)
         elif step_i == 'Download_DIGISONDE':
-            download_Digisonde(paths_dict['DIGISONDE_url'], config)
+            download_digisonde(paths_dict['DIGISONDE_url'], config)
 
 main(root = '/home/javier/Projects/IonoProbe/')
 

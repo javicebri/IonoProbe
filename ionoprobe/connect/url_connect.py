@@ -22,7 +22,7 @@ def req_GOES(url):
     else:
        logger.warning('REQ ERROR')
 
-def req_Digisonde(url):
+def req_digisonde_image(url):
     """
     Get image from URL.
 
@@ -30,6 +30,22 @@ def req_Digisonde(url):
     @type url: str
     @return: The content of the retrieved image.
     @rtype: bytes
+    """
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.content
+    else:
+       logger.warning('REQ ERROR')
+
+
+def req_digisonde_plain(url):
+    """
+    Get plain text from URL.
+
+    @param url: The URL to retrieve the file from.
+    @type url: str
+    @return: The content of the retrieved str.
+    @rtype: str
     """
     res = requests.get(url)
     if res.status_code == 200:
