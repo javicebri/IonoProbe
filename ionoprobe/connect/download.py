@@ -1,4 +1,5 @@
 import itertools
+import GLOBAL_VARS
 
 from logger import logger
 from model.image import get_str_from_image, transform_str_to_df

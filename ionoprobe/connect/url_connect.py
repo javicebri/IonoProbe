@@ -1,9 +1,7 @@
 # connect.py
 
-import os
 import json
 import requests
-import GLOBAL_VARS
 import pandas as pd
 from logger import logger
 
