@@ -7,6 +7,8 @@ from logging import Logger
 
 def init_logger(root, exec_str):
     logger_path = os.path.join(root, 'logs', 'log_' + exec_str + '.log')
+    if not os.path.exists(logger_path):
+        os.makedirs(logger_path)
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     log = logging.getLogger('MyLogger')
     log.setLevel(logging.INFO)

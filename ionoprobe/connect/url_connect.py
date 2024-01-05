@@ -35,6 +35,7 @@ def req_digisonde_image(url):
         return res.content
     else:
        logger.warning('REQ ERROR')
+       return bytes('')
 
 def req_digisonde_plain(url):
     """

@@ -36,6 +36,8 @@ def download_digisonde(paths_dict, config):
         total_df = pd.DataFrame()
         # For each station
         for station_i, data_i in req_couples_list:
+            logger.info(f' - Download {station_i} - {data_i}')
+            print(f' - Download {station_i} - {data_i}')
             url_str = gen_url_digisonde_plain(paths_dict['DIGISONDE_plain_url']['url_giro'], station_i, data_i, config)
             data_bytes = req_digisonde_plain(url_str)
             # Transform str to df
@@ -46,15 +48,9 @@ def download_digisonde(paths_dict, config):
                 logger.info(f'{station_i} and {data_i} has no data.')
             time.sleep(2)
 
-        total_df.to_feather(paths_dict['output_DIGISONDE'])
-
-  
-
         # if config is local save in folder, if is aws save in s3
         if "local" in config['save']:
-            # print('Finish')
-            # # with open('output.json', 'w') as file:
-            # #     json.dump(data_json, data_json, indent=4)  # indent opcional para formato legible
+            total_df.to_feather(paths_dict['output_DIGISONDE'])
             pass
         if "s3" in config['save']:
             # store_in_s3(bucket_name = 'ionoprobe', s3_path = 'DIGISONDE', file_name = 'prueba.png', data = image_bytes)

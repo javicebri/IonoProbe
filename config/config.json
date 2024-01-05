@@ -24,8 +24,6 @@
       "last_date": "20240101_01:00:00"
     },
 
-
-
     "DIGISONDE_source": ["DIGISONDE_plain_url"],
 
     "save": ["local","s3"]
