@@ -1,0 +1,7 @@
+logging
+boto3
+pandas
+torch 
+torchvision 
+torchaudio
+easyocr
