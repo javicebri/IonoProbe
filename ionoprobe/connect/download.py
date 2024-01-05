@@ -15,7 +15,7 @@ def download_digisonde(paths_dict, config):
     @return: None
     @rtype: None
     """
-    if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
+    if "DIGISONDE_image_url" in config['DIGISONDE_source']:
         for path_i in paths_dict['DIGISONDE_image_url'].keys():
             image_bytes = req_digisonde_image(paths_dict[path_i])
             # Extract information of the image

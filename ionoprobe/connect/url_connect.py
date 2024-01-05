@@ -71,25 +71,29 @@ def gen_url_digisonde_plain(url, config):
     # For each station
     for station_i, data_i in req_couples_list:
 
-        origin_year = config["origin_date"]
-        origin_month = config["origin_date"]
-        origin_day = config["origin_date"]
-        origin_hour = config["origin_date"]
-        origin_minute = config["origin_date"]
-        origin_second = config["origin_date"]
+        origin_date = config['DIGISONDE_plain_url']["origin_date"]
+        origin_year = origin_date.strftime("%Y")
+        origin_month = origin_date.strftime("%m")
+        origin_day = origin_date.strftime("%d")
+        origin_hour = origin_date.strftime("%H")
+        origin_minute = origin_date.strftime("%M")
+        origin_second = origin_date.strftime("%S")
 
-        last_year = config["last_date"]
-        last_month = config["last_date"]
-        last_day = config["last_date"]
-        last_hour = config["last_date"]
-        last_minute = config["last_date"]
-        last_second = config["last_date"]
+        last_date = config['DIGISONDE_plain_url']["last_date"]
+        last_year = last_date.strftime("%Y")
+        last_month = last_date.strftime("%m")
+        last_day = last_date.strftime("%d")
+        last_hour = last_date.strftime("%H")
+        last_minute = last_date.strftime("%M")
+        last_second = last_date.strftime("%S")
 
         req_url = f'{url}?ursiCode={station_i}&' + \
                   f'charName={data_i}&' + \
                   'DMUF=3000&' + \
                   f'fromDate={origin_year}%2F{origin_month}%2F{origin_day}+{origin_hour}%3A{origin_minute}%3A{origin_second}&' + \
                   f'toDate={last_year}%2F{last_month}%2F{last_day}+{last_hour}%3A{last_minute}%3A{last_second}'
+        
+        return req_url
 
 
 

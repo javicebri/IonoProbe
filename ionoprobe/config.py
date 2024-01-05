@@ -25,8 +25,8 @@ def format_config(config):
     @return: Dictionary with correct format.
     @rtype: Dictionary
     """
-    origin_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['origin_date'], "%Y%m%d_%H%M%S")
+    origin_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['origin_date'], "%Y%m%d_%H:%M:%S")
     config['DIGISONDE_plain_url']['origin_date'] = origin_date
-    last_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['last_date'], "%Y%m%d_%H%M%S")
+    last_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['last_date'], "%Y%m%d_%H:%M:%S")
     config['DIGISONDE_plain_url']['last_date'] = last_date
     return config
