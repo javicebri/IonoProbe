@@ -16,14 +16,18 @@ def download_digisonde(paths_dict, config):
     @rtype: None
     """
     for path_i in paths_dict.keys():
-        image_bytes = req_digisonde_image(paths_dict[path_i])
+        if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
+            image_bytes = req_digisonde_image(paths_dict[path_i])
 
-        # Extract information of the image
-        image_str = get_str_from_image(image_bytes)
+            # Extract information of the image
+            image_str = get_str_from_image(image_bytes)
 
-        # Transform str in df
-        image_df = transform_str_to_df(image_str)
+            # Transform str in df
+            image_df = transform_str_to_df(image_str)
+            
+        if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
 
+            for data_i in 
 
         # if config is local save in folder, if is aws save in s3
         if "local" in config['save']:
