@@ -1,6 +1,6 @@
 from logger import logger
 from model.image import get_str_from_image, transform_str_to_df
-from connect.url_connect import req_GOES, req_digisonde_image, req_digisonde_plain
+from connect.url_connect import req_GOES, req_digisonde_image, gen_url_digisonde_plain
 from connect.aws_connect import store_in_s3
 
 
@@ -15,19 +15,16 @@ def download_digisonde(paths_dict, config):
     @return: None
     @rtype: None
     """
-    for path_i in paths_dict.keys():
-        if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
+    if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
+        for path_i in paths_dict['DIGISONDE_image_url'].keys():
             image_bytes = req_digisonde_image(paths_dict[path_i])
-
             # Extract information of the image
             image_str = get_str_from_image(image_bytes)
-
             # Transform str in df
             image_df = transform_str_to_df(image_str)
-            
-        if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
-
-            for data_i in 
+        
+    if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
+        data_srt = gen_url_digisonde_plain(paths_dict['DIGISONDE_plain_url']['url_giro'], config)
 
         # if config is local save in folder, if is aws save in s3
         if "local" in config['save']:
@@ -51,7 +48,7 @@ def download_GOES(paths_dict, config):
     @return: The content of the retrieved image.
     @rtype: DataFrame
     """
-    for path_i in paths_dict.keys():
+    for path_i in paths_dict['GOES_url'].keys():
         data_df = req_GOES(paths_dict['path_i'])
         # if config is local save in folder, if is aws save in s3
         if "local" in config['save']:

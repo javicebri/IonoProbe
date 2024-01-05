@@ -19,8 +19,12 @@
     },
 
     "DIGISONDE_plain_url": {
-      "url_giro": "https://lgdc.uml.edu/common/DIDBGetValues?ursiCode=EB040&charName=foF1&DMUF=3000&fromDate=2023%2F12%2F31+21%3A00%3A00&toDate=2024%2F01%2F03+03%3A00%3A00"
+      "url_giro": "https://lgdc.uml.edu/common/DIDBGetValues",
+      "origin_date": "20230101 00:00:00",
+      "last_date": "20231231 00:00:00"
     },
+
+
 
     "DIGISONDE_source": ["DIGISONDE_plain_url"],
 

@@ -26,9 +26,9 @@ def main(root="/"):
 
     for step_i in run_steps:
         if step_i == 'Download_GOES':
-            download_GOES(paths_dict['GOES_url'], config)
+            download_GOES(paths_dict, config)
         elif step_i == 'Download_DIGISONDE':
-            download_digisonde(paths_dict['DIGISONDE_url'], config)
+            download_digisonde(paths_dict, config)
 
 main(root = '/home/javier/Projects/IonoProbe/')
 
