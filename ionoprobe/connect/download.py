@@ -1,6 +1,8 @@
+import itertools
+
 from logger import logger
 from model.image import get_str_from_image, transform_str_to_df
-from connect.url_connect import req_GOES, req_digisonde_image, gen_url_digisonde_plain
+from connect.url_connect import req_GOES, req_digisonde_image, gen_url_digisonde_plain, req_digisonde_plain
 from connect.aws_connect import store_in_s3
 
 
@@ -24,7 +26,14 @@ def download_digisonde(paths_dict, config):
             image_df = transform_str_to_df(image_str)
         
     if "DIGISONDE_plain_url" in config['DIGISONDE_source']:
-        data_srt = gen_url_digisonde_plain(paths_dict['DIGISONDE_plain_url']['url_giro'], config)
+        # Get a tuple of each combination ESTATION <-> DATA
+        req_couples_list = list(itertools.product(GLOBAL_VARS.sta_dict.keys(), GLOBAL_VARS.DIGISONDE_plain_data.keys()))
+
+        # For each station
+        for station_i, data_i in req_couples_list:
+            url_str = gen_url_digisonde_plain(paths_dict['DIGISONDE_plain_url']['url_giro'], config)
+            data_str = req_digisonde_plain(url_str)
+  
 
         # if config is local save in folder, if is aws save in s3
         if "local" in config['save']:
