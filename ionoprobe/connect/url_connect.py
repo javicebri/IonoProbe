@@ -51,12 +51,16 @@ def req_digisonde_plain(url):
     else:
        logger.warning('REQ ERROR')
 
-def gen_url_digisonde_plain(url, config):
+def gen_url_digisonde_plain(url, station_name, data_name, config):
     """
     Generate the url to make the request for https://giro.uml.edu/didbase/scaled.php.
 
-    @param url: base url.
+    @param url: Base url.
     @type url: str
+    @param station_name: Name of the station.
+    @type station_name: str
+    @param data_name: Name of the data request.
+    @type data_name: str
     @param config: config dictionary.
     @type config: dict
     @return: The url with for the request.
@@ -80,8 +84,8 @@ def gen_url_digisonde_plain(url, config):
     last_minute = last_date.strftime("%M")
     last_second = last_date.strftime("%S")
 
-    req_url = f'{url}?ursiCode={station_i}&' + \
-            f'charName={data_i}&' + \
+    req_url = f'{url}?ursiCode={station_name}&' + \
+            f'charName={data_name}&' + \
             'DMUF=3000&' + \
             f'fromDate={origin_year}%2F{origin_month}%2F{origin_day}+{origin_hour}%3A{origin_minute}%3A{origin_second}&' + \
             f'toDate={last_year}%2F{last_month}%2F{last_day}+{last_hour}%3A{last_minute}%3A{last_second}'
