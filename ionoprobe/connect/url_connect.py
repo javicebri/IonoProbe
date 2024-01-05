@@ -96,12 +96,3 @@ def gen_url_digisonde_plain(url, config):
 
 
 
-
-
-    res = requests.get(url)
-    if res.status_code == 200:
-        return res.content
-    else:
-       logger.warning('REQ ERROR')
-
-
