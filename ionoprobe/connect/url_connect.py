@@ -87,7 +87,7 @@ def gen_url_digisonde_plain(url, config):
         last_minute = config["last_date"]
         last_second = config["last_date"]
 
-        req_url = f'https://lgdc.uml.edu/common/DIDBGetValues?ursiCode={station_i}&' + \
+        req_url = f'{url}?ursiCode={station_i}&' + \
                   f'charName={data_i}&' + \
                   'DMUF=3000&' + \
                   f'fromDate={origin_year}%2F{origin_month}%2F{origin_day}+{origin_hour}%3A{origin_minute}%3A{origin_second}&' + \

@@ -44,7 +44,7 @@ def download_GOES(paths_dict, config):
     @param paths_dict: The URL to retrieve the file from.
     @type paths_dict: dict
     @param config: config file
-    @type url: dict
+    @type url: Dictionary
     @return: The content of the retrieved image.
     @rtype: DataFrame
     """

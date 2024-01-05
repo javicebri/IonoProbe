@@ -16,8 +16,17 @@ def validate_config(config_dict):
     pass
 
 
-def format_config(config, exec_str):
-    exec_dt = dt.datetime.strptime(exec_str, "%Y%m%d_%H%M%S")
-    config['exec_dt'] = exec_dt
-    config['exec_str'] = exec_str
+def format_config(config):
+    """
+    Format config file with the expected data, for example datetime variables etc.
+
+    @param config: config file
+    @type url: dict
+    @return: Dictionary with correct format.
+    @rtype: Dictionary
+    """
+    origin_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['origin_date'], "%Y%m%d_%H%M%S")
+    config['DIGISONDE_plain_url']['origin_date'] = origin_date
+    last_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['last_date'], "%Y%m%d_%H%M%S")
+    config['DIGISONDE_plain_url']['last_date'] = last_date
     return config

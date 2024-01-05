@@ -6,7 +6,7 @@ import requests
 import logging
 from logger import logger
 from paths import get_paths, add_config_paths
-from config import load_config
+from config import load_config, format_config
 from connect.download import download_digisonde, download_GOES
 
 def main(root="/"):
@@ -15,6 +15,7 @@ def main(root="/"):
 
     # Read Config
     config = load_config(paths_dict)
+    config = format_config(config)
 
     # Add paths
     paths_dict = add_config_paths(root, paths_dict, config)
