@@ -27,5 +27,6 @@ def add_config_paths(root, paths_dict, config):
     paths_dict['GOES_url'] = config['GOES_url']
     paths_dict['DIGISONDE_image_url'] = config['DIGISONDE_image_url']
     paths_dict['DIGISONDE_plain_url'] = config['DIGISONDE_plain_url']
+    paths_dict['output_DIGISONDE'] = os.path.join(paths_dict['output'], 'digisonde_data.feather')
     return paths_dict
 

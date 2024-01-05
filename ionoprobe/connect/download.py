@@ -44,9 +44,9 @@ def download_digisonde(paths_dict, config):
                 total_df = pd.concat([total_df, data_df], ignore_index=True)
             else:
                 logger.info(f'{station_i} and {data_i} has no data.')
-            time.sleep(1)
+            time.sleep(2)
 
-        total_df
+        total_df.to_feather(paths_dict['output_DIGISONDE'])
 
   
 

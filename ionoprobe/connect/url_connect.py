@@ -49,7 +49,7 @@ def req_digisonde_plain(url):
     if res.status_code == 200:
         return res.content
     else:
-       logger.warning('REQ ERROR')
+       logger.warning(f'REQ ERROR for {url}')
 
 def gen_url_digisonde_plain(url, station_name, data_name, config):
     """

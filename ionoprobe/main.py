@@ -5,13 +5,14 @@ import json
 import requests
 import logging
 from logger import logger
-from paths import get_paths, add_config_paths
+from paths import get_paths, create_paths, add_config_paths
 from config import load_config, format_config
 from connect.download import download_digisonde, download_GOES
 
 def main(root="/"):
     # Create paths dict
     paths_dict = get_paths(root)
+    create_paths(root, paths_dict)
 
     # Read Config
     config = load_config(paths_dict)
