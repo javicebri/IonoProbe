@@ -65,8 +65,6 @@ def gen_url_digisonde_plain(url, config):
     @return: The url with for the request.
     @rtype: str
     """
-    https://lgdc.uml.edu/common/DIDBGetValues?ursiCode=AL945&charName=foF2&DMUF=3000&fromDate=2023%2F07%2F01+21%3A00%3A00&toDate=2024%2F01%2F03+03%3A00%3A00
-
     # Get a tuple of each combination ESTATION <-> DATA
     req_couples_list = list(itertools.product(GLOBAL_VARS.sta_dict.keys(), GLOBAL_VARS.DIGISONDE_plain_data.keys()))
 
