@@ -17,7 +17,7 @@ def format_paths(paths_dict, exec_str):
         paths_dict[key] = value.replace("%exec_time%", exec_str)
 
 
-def create_paths(root, paths_dict):
+def create_paths(paths_dict):
     for path_i in paths_dict:
         if not os.path.exists(path_i):
             os.makedirs(path_i)
