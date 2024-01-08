@@ -163,3 +163,4 @@ cython_debug/
 # Paths
 data/
 logs/
+output/

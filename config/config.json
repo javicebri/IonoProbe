@@ -26,7 +26,7 @@
 
     "DIGISONDE_source": ["DIGISONDE_plain_url"],
 
-    "save": ["local","s3"]
+    "save": ["local"]
 
 }
   
