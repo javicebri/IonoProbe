@@ -23,12 +23,11 @@ def main(root="/"):
     # Add paths
     paths_dict = add_config_paths(root, paths_dict, config)
 
-    # logger.info('Start GOES ETL.')
-    # logger.info('Req')
 
     run_steps = config['RUN']
 
     for step_i in run_steps:
+        # logger.info('Start GOES Download.')
         if step_i == 'Download_GOES':
             download_GOES(paths_dict, config)
         elif step_i == 'Download_DIGISONDE':
