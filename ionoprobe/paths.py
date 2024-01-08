@@ -18,7 +18,7 @@ def format_paths(paths_dict, exec_str):
 
 
 def create_paths(paths_dict):
-    for path_i in paths_dict:
+    for path_i in paths_dict.values():
         if not os.path.exists(path_i):
             os.makedirs(path_i)
 
