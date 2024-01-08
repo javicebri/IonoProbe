@@ -23,7 +23,6 @@ def get_digisonde_last_date(paths_dict, station, data):
         date = df['Time'].max().to_pydatetime()
     else:
         year_ago_date = current_date_utc - datetime.timedelta(days=365)
-        year_ago_date = year_ago_date.replace(hour=0, minute=0, second=0, microsecond=0)
-        date = year_ago_date
+        date = year_ago_date.replace(hour=0, minute=0, second=0, microsecond=0)
     
     return date
