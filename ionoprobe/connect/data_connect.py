@@ -4,12 +4,12 @@ import os
 import datetime
 import pandas as pd
 
-def get_digisonde_last_date(paths_dict, station, data):
+def get_digisonde_last_date(file_path, station, data):
     """
     Get the last date from DIGISONDE data.
 
     Parameters:
-    @param paths_dict (dict): A dictionary containing file paths.
+    @param file_path (str): Path of the file.
     @param station (str): The name of the station.
     @param data (str): The type of data.
     Returns:
@@ -17,8 +17,8 @@ def get_digisonde_last_date(paths_dict, station, data):
     """
     current_date_utc = datetime.datetime.now(datetime.timezone.utc)
     # Check if exist previous data:
-    if os.path.exists(paths_dict['data_DIGISONDE_feather_f']):
-        df = pd.read_feather(paths_dict['data_DIGISONDE_feather_f'], columns=['Time', 'CS_' + data, data, station])
+    if os.path.exists(file_path):
+        df = pd.read_feather(file_path, columns=['Time', 'CS_' + data, data, station])
         df = df.dropna(subset=['Time', 'CS_' + data, data])
         date = df['Time'].max().to_pydatetime()
     else:
