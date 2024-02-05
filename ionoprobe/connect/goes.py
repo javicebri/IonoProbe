@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import requests
 import pandas as pd
 
@@ -40,6 +41,7 @@ class GOES_SWPC_NOAA(Connect):
         for key_i, url_i in url_dict.items():
             df = self._get_url(url_i)
             df_dict[key_i] = df
+            time.sleep(1)      
         return df_dict
 
     def _save_local_csv(self, df_dict):
@@ -82,7 +84,7 @@ class GOES_SWPC_NOAA(Connect):
         df_dict = self._get_url_dict(url_dict)
 
         for target_i in target:
-            if target.lower() == "local_csv":
+            if target_i.lower() == "local_csv":
                 self._save_local_csv(df_dict)
-            if target == "s3_csv":
+            if target_i == "s3_csv":
                 self._save_s3(df_dict)
