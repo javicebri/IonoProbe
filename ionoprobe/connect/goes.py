@@ -65,12 +65,12 @@ class GOES_SWPC_NOAA(Connect):
 
         @param paths_dict: The URL dict to retrieve the files from.
         @type paths_dict: dict
-        @param location: indicate the output target type
-        @type location: str
+        @param target: indicate the output type
+        @type target: list
         @return: None
         """
-
-        if target.lower() == "csv":
-            self._download_local_csv(url_dict)
-        if target == "s3":
-            self._download_s3(url_dict)
+        for target_i in target:
+            if target.lower() == "csv":
+                self._download_local_csv(url_dict)
+            if target == "s3":
+                self._download_s3(url_dict)

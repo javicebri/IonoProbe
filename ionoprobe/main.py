@@ -29,7 +29,7 @@ def main(root="/"):
     paths_dict = add_config_paths(root, paths_dict, config)
 
     goes_swpc_noaa = GOES_SWPC_NOAA(paths_dict=paths_dict, config=config)
-    goes_swpc_noaa.download(url_dict=paths_dict['GOES_SWPC_NOAA_url'], target='csv') #In the future these arg must be passed by gui selection
+    goes_swpc_noaa.download(url_dict=paths_dict['GOES_SWPC_NOAA_url'], target=['csv']) #In the future these arg must be passed by gui selection
 
 
     # run_steps = config['RUN']
