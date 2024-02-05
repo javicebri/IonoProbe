@@ -4,6 +4,9 @@ import os
 
 import GLOBAL_VARS
 
+from tools.datetools import get_now_date_str
+
+
 
 def load_config(paths_dict):
     config_fn = os.path.join(paths_dict['config'], GLOBAL_VARS.base_file_names_dict["config_fn"])
@@ -25,8 +28,10 @@ def format_config(config):
     @return: Dictionary with correct format.
     @rtype: Dictionary
     """
-    origin_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['origin_date'], "%Y%m%d_%H:%M:%S")
-    config['DIGISONDE_plain_url']['origin_date'] = origin_date
-    last_date = dt.datetime.strptime(config['DIGISONDE_plain_url']['last_date'], "%Y%m%d_%H:%M:%S")
-    config['DIGISONDE_plain_url']['last_date'] = last_date
+    origin_date = dt.datetime.strptime(config['DIGISONDE_GIRO_url']['origin_date'], "%Y%m%d_%H:%M:%S")
+    config['DIGISONDE_GIRO_url']['origin_date'] = origin_date
+    last_date = dt.datetime.strptime(config['DIGISONDE_GIRO_url']['last_date'], "%Y%m%d_%H:%M:%S")
+    config['DIGISONDE_GIRO_url']['last_date'] = last_date
+    config['date_hour_str'] = get_now_date_str()
+
     return config

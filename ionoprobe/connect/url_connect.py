@@ -90,7 +90,6 @@ def gen_url_digisonde_plain(url, station_name, data_name, config):
             'DMUF=3000&' + \
             f'fromDate={origin_year}%2F{origin_month}%2F{origin_day}+{origin_hour}%3A{origin_minute}%3A{origin_second}&' + \
             f'toDate={last_year}%2F{last_month}%2F{last_day}+{last_hour}%3A{last_minute}%3A{last_second}'
-    req_digisonde_plain(url)
 
     return req_url
 

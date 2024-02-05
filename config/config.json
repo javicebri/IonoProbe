@@ -18,8 +18,8 @@
       "url_arenosillo": "https://iono.inta.es/ionogif//EA036_2024004195001_IO.PNG"
     },
 
-    "DIGISONDE_plain_url": {
-      "url_giro": "https://lgdc.uml.edu/common/DIDBGetValues",
+    "DIGISONDE_GIRO_url": {
+      "url": "https://lgdc.uml.edu/common/DIDBGetValues",
       "origin_date": "20231231_00:00:00",
       "last_date": "20240101_01:00:00"
     },

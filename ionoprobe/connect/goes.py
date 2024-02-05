@@ -8,7 +8,6 @@ import pandas as pd
 from .aws import store_in_s3
 from logger import logger
 from .connect import Connect
-from tools.datetools import get_now_date_str
 
 
 class GOES_SWPC_NOAA(Connect):
@@ -55,7 +54,7 @@ class GOES_SWPC_NOAA(Connect):
         @return: None
         """
         for key_i, df_i in df_dict.items():
-            f_name = key_i + ".csv"
+            f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
             f_path = os.path.join(self.paths_dict['output'], f_name)
             df_i.to_csv(f_path, sep=';', index=False)
 
@@ -67,9 +66,8 @@ class GOES_SWPC_NOAA(Connect):
         @type paths_dict: dict
         @return: None
         """
-        date_str = get_now_date_str()
         for key_i, df_i in df_dict.items():
-            f_name = key_i + "_" + date_str + ".csv"
+            f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
             store_in_s3(bucket_name = GLOBAL_VARS.s3_bucket_name, 
                         s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
                         file_name = f_name, 

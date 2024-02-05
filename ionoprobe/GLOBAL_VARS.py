@@ -83,8 +83,11 @@ f_legend = ['foF2', 'foF1', 'foF1p', 'foFE', 'foFEp', 'fxI', 'foEs', 'fmin']
 sta_dict = {"EB040": ("40.8N", "0.5E", "ROQUETES", "SPAIN"),
             } 
 
+DIGISONDE_GIRO_fn = "digisonde_giro_raw"
+DIGISONDE_GIRO_s3_path = "DIGISONDE_GIRO"
+
 # Each data must be request in a different get
-DIGISONDE_plain_data = {"foF2": "F2 layer critical frequency",
+DIGISONDE_GIRO_data = {"foF2": "F2 layer critical frequency",
                         "foF1": "F1 layer critical frequency",
                         "foE": "E layer critical frequency",
                         "foEs": "Es layer critical frequency",
