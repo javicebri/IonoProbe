@@ -2,11 +2,13 @@ import os
 import json
 import time
 import requests
+import GLOBAL_VARS
 import pandas as pd
 
+from .aws import store_in_s3
 from logger import logger
 from .connect import Connect
-
+from tools.datetools import get_now_date_str
 
 
 class GOES_SWPC_NOAA(Connect):
@@ -57,8 +59,7 @@ class GOES_SWPC_NOAA(Connect):
             f_path = os.path.join(self.paths_dict['output'], f_name)
             df_i.to_csv(f_path, sep=';', index=False)
 
-    
-    def _save_s3(self, df_dict):
+    def _save_s3_csv(self, df_dict):
         """
         Iterate reqs
 
@@ -66,9 +67,13 @@ class GOES_SWPC_NOAA(Connect):
         @type paths_dict: dict
         @return: None
         """
-        # store_in_s3(bucket_name = 'ionoprobe', s3_path = 'DIGISONDE', file_name = 'prueba.png', data = data_df)
-        pass    
-
+        date_str = get_now_date_str()
+        for key_i, df_i in df_dict.items():
+            f_name = key_i + "_" + date_str + ".csv"
+            store_in_s3(bucket_name = GLOBAL_VARS.s3_bucket_name, 
+                        s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
+                        file_name = f_name, 
+                        data = df_i)
 
     def download(self, url_dict, target):
         """
@@ -80,11 +85,9 @@ class GOES_SWPC_NOAA(Connect):
         @type target: list
         @return: None
         """
-
         df_dict = self._get_url_dict(url_dict)
-
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df_dict)
             if target_i == "s3_csv":
-                self._save_s3(df_dict)
+                self._save_s3_csv(df_dict)

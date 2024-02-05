@@ -24,6 +24,14 @@ base_file_names_dict = {
 }
 
 
+s3_bucket_name = "ionoprobe"
+
+# GOES DATA
+GOES_SWPC_NOAA_s3_path = "GOES_SWPC_NOAA"
+
+
+
+
 
 
 # DIGISONDE DATA

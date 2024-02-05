@@ -8,7 +8,7 @@ from model.image import get_str_from_image, transform_str_to_df
 from model.digiPlain import transform_digi_plain_str_to_df
 from connect.data_connect import get_digisonde_last_date
 from connect.url_connect import req_GOES, req_digisonde_image, gen_url_digisonde_plain, req_digisonde_plain
-from connect.aws_connect import store_in_s3
+from connect.aws import store_in_s3
 
 
 def download_digisonde(paths_dict, config):
