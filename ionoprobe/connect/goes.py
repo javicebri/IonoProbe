@@ -28,32 +28,41 @@ class GOES_SWPC_NOAA(Connect):
         else:
             logger.warning(f'Req ERROR {res.status_code}')
     
+    def _get_url_dict(self, url_dict):
+        """
+        For each url in url_dict get the data
 
-    def _download_local_csv(self, url_dict):
+        @param url_dict: The URL dict to retrieve the files from.
+        @type url_dict: dict
+        @return: dict
+        """
+        df_dict = {}
+        for key_i, url_i in url_dict.items():
+            df = self._get_url(url_i)
+            df_dict[key_i] = df
+        return df_dict
+
+    def _save_local_csv(self, df_dict):
         """
         For each url save the csv file in save path set in paths_dict
 
-        @param paths_dict: The URL dict to retrieve the files from.
+        @param df_dict: dict with dataframes to be saved
         @type paths_dict: dict
         @return: None
         """
-        for key_i, url_i in url_dict.items():
-            df = self._get_url(url_i)
+        for key_i, df_i in df_dict.items():
             f_name = key_i + ".csv"
             f_path = os.path.join(self.paths_dict['output'], f_name)
-            df.to_csv(f_path, sep=';', index=False)
+            df_i.to_csv(f_path, sep=';', index=False)
 
     
-    def _download_s3(self, url_dict):
+    def _save_s3(self, df_dict):
         """
         Iterate reqs
 
-        @param paths_dict: The URL to retrieve the file from.
+        @param df_dict: dict with dataframes to be saved
         @type paths_dict: dict
-        @param config: config file
-        @type url: Dictionary
-        @return: The content of the retrieved image.
-        @rtype: DataFrame
+        @return: None
         """
         # store_in_s3(bucket_name = 'ionoprobe', s3_path = 'DIGISONDE', file_name = 'prueba.png', data = data_df)
         pass    
@@ -69,8 +78,11 @@ class GOES_SWPC_NOAA(Connect):
         @type target: list
         @return: None
         """
+
+        df_dict = self._get_url_dict(url_dict)
+
         for target_i in target:
-            if target.lower() == "csv":
-                self._download_local_csv(url_dict)
-            if target == "s3":
-                self._download_s3(url_dict)
+            if target.lower() == "local_csv":
+                self._save_local_csv(df_dict)
+            if target == "s3_csv":
+                self._save_s3(df_dict)
