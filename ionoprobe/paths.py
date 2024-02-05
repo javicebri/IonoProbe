@@ -22,7 +22,7 @@ def create_paths(paths_dict):
             os.makedirs(path_i)
 
 def add_config_paths(root, paths_dict, config):
-    paths_dict['GOES_url'] = config['GOES_url']
+    paths_dict['GOES_SWPC_NOAA_url'] = config['GOES_SWPC_NOAA_url']
     paths_dict['DIGISONDE_image_url'] = config['DIGISONDE_image_url']
     paths_dict['DIGISONDE_plain_url'] = config['DIGISONDE_plain_url']
     paths_dict['data_DIGISONDE_feather_f'] = os.path.join(paths_dict['output'], GLOBAL_VARS.base_file_names_dict['data_DIGISONDE_feather_fn'])
