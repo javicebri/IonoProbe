@@ -23,4 +23,5 @@ def store_in_s3(bucket_name, s3_path, file_name, data):
         s3_client.put_object(Body=data, Bucket=bucket_name, Key=file_key)
 
 
-    # print(f'DataFrame guardado en s3://{bucket_name}/{file_key}')
+def store_in_postgresql():
+    pass

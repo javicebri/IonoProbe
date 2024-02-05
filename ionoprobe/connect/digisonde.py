@@ -59,14 +59,10 @@ class DIGISONDE_GIRO(Connect):
         """
         Generate the url to make the request for https://giro.uml.edu/didbase/scaled.php.
 
-        @param url: Base url.
-        @type url: str
         @param station_name: Name of the station.
         @type station_name: str
         @param data_name: Name of the data request.
         @type data_name: str
-        @param config: config dictionary.
-        @type config: dict
         @return: The url with for the request.
         @rtype: str
         """
@@ -145,7 +141,6 @@ class DIGISONDE_GIRO(Connect):
         
         return total_df
 
-
     def _save_local_csv(self, df):
         """
         For each url save the csv file in save path set in paths_dict
@@ -154,13 +149,17 @@ class DIGISONDE_GIRO(Connect):
         @type df: df
         @return: None
         """
+        folder_path = os.path.join(self.paths_dict['output'], GLOBAL_VARS.DIGISONDE_GIRO_s3_path)
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+        
         f_name = GLOBAL_VARS.DIGISONDE_GIRO_fn + "_" + self.config['date_hour_str'] + ".csv"
-        f_path = os.path.join(self.paths_dict['output'], f_name)
+        f_path = os.path.join(folder_path, f_name)
         df.to_csv(f_path, sep=';', index=False)
 
     def _save_s3_csv(self, df):
         """
-        Iterate reqs
+        Save CSV files in AWS S3
 
         @param df_dict: dict with dataframes to be saved
         @type paths_dict: dict

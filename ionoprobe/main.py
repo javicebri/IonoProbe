@@ -8,7 +8,6 @@ import GLOBAL_VARS
 from logger import logger, init_logger
 from paths import get_paths, create_paths, add_config_paths
 from config import load_config, format_config
-from connect.download import download_digisonde, download_GOES
 from connect.goes import GOES_SWPC_NOAA
 from connect.digisonde import DIGISONDE_GIRO
 
@@ -35,6 +34,8 @@ def main(root="/"):
 
     goes_swpc_noaa = GOES_SWPC_NOAA(paths_dict=paths_dict, config=config)
     goes_swpc_noaa.download(url_dict=paths_dict['GOES_SWPC_NOAA_url'], target=['local_csv', 's3_csv']) #In the future these arg must be passed by gui selection
+
+    logger.info('END IONOPROBE.')
 
 main(root = '/home/javier/Projects/IonoProbe/')
 

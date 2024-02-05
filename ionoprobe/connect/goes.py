@@ -5,9 +5,9 @@ import requests
 import GLOBAL_VARS
 import pandas as pd
 
-from .aws import store_in_s3
 from logger import logger
 from .connect import Connect
+from .aws import store_in_s3, store_in_postgresql
 
 
 class GOES_SWPC_NOAA(Connect):
@@ -53,14 +53,18 @@ class GOES_SWPC_NOAA(Connect):
         @type paths_dict: dict
         @return: None
         """
+        folder_path = os.path.join(self.paths_dict['output'], GLOBAL_VARS.GOES_SWPC_NOAA_s3_path)
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+
         for key_i, df_i in df_dict.items():
             f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
-            f_path = os.path.join(self.paths_dict['output'], f_name)
+            f_path = os.path.join(folder_path, f_name)
             df_i.to_csv(f_path, sep=';', index=False)
 
     def _save_s3_csv(self, df_dict):
         """
-        Iterate reqs
+        Save CSV files in AWS S3
 
         @param df_dict: dict with dataframes to be saved
         @type paths_dict: dict
@@ -72,6 +76,22 @@ class GOES_SWPC_NOAA(Connect):
                         s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
                         file_name = f_name, 
                         data = df_i)
+
+    def _save_postgresql(self, df_dict):
+        """
+        Iterate reqs
+
+        @param df_dict: dict with dataframes to be saved
+        @type paths_dict: dict
+        @return: None
+        """
+        # for key_i, df_i in df_dict.items():
+        #     f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
+        #     store_in_postgresql(bucket_name = GLOBAL_VARS.s3_bucket_name, 
+        #                         s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
+        #                         file_name = f_name, 
+        #                         data = df_i)
+        pass
 
     def download(self, url_dict, target):
         """
