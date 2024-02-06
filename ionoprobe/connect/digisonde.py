@@ -208,6 +208,8 @@ class DIGISONDE_GIRO(Connect):
         else:
             df_raw = self._get_url_dict(url_dict)
 
+        df = self._transform_df(df_raw)
+
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df_raw)
@@ -216,4 +218,3 @@ class DIGISONDE_GIRO(Connect):
             if target_i == "local_postgresql":
                 self._save_local_postgresql(df_raw)
         
-        df = self._transform_df(df_raw)

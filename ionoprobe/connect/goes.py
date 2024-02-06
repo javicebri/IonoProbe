@@ -89,6 +89,17 @@ class GOES_SWPC_NOAA(Connect):
         for key_i, df_i in df_dict.items():
             store_local_postgresql(table_name=key_i, df=df_i)
 
+    def _transform_df(self, df_dict):
+        """
+        Agrupate rows around the time in 00, 15, 30, 45 
+
+        @param df_dict: dict of dataframes to be transformed
+        @type df_dict: dict
+        @return: dict
+        """
+        for key_i, df_i in df_dict.items():
+           pass
+
     def download(self, url_dict, target):
         """
         For each url save the output target type
@@ -100,15 +111,17 @@ class GOES_SWPC_NOAA(Connect):
         @return: None
         """
         if GLOBAL_VARS.DEBUG_MODE:
-            df_dict = {}
-            df_dict['differential_electrons'] = pd.read_csv(os.environ['DEBUG_MODE_GOES_FPATH'], sep=';')
+            df_dict_raw = {}
+            df_dict_raw['differential_electrons'] = pd.read_csv(os.environ['DEBUG_MODE_GOES_FPATH'], sep=';')
         else:
-            df_dict = self._get_url_dict(url_dict)
+            df_dict_raw = self._get_url_dict(url_dict)
+
+        df_dict = self._transform_df(df_dict_raw)
 
         for target_i in target:
             if target_i.lower() == "local_csv":
-                self._save_local_csv(df_dict)
+                self._save_local_csv(df_dict_raw)
             if target_i == "s3_csv":
-                self._save_s3_csv(df_dict)
+                self._save_s3_csv(df_dict_raw)
             if target_i == "local_postgresql":
-                self._save_local_postgresql(df_dict)
+                self._save_local_postgresql(df_dict_raw)
