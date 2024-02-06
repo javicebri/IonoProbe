@@ -73,7 +73,7 @@ class GOES_SWPC_NOAA(Connect):
         """
         for key_i, df_i in df_dict.items():
             f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
-            store_in_s3(bucket_name = GLOBAL_VARS.s3_bucket_name, 
+            store_in_s3(bucket_name = GLOBAL_VARS.S3_BUCKET_NAME, 
                         s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
                         file_name = f_name, 
                         data = df_i)
@@ -99,7 +99,7 @@ class GOES_SWPC_NOAA(Connect):
         @type target: list
         @return: None
         """
-        if GLOBAL_VARS.debug_mode:
+        if GLOBAL_VARS.DEBUG_MODE:
             df_dict = {}
             df_dict['differential_electrons'] = pd.read_csv(os.environ['DEBUG_MODE_GOES_FPATH'], sep=';')
         else:

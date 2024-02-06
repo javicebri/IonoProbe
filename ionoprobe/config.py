@@ -9,7 +9,7 @@ from tools.datetools import get_now_date_str
 
 
 def load_config(paths_dict):
-    config_fn = os.path.join(paths_dict['config'], GLOBAL_VARS.base_file_names_dict["config_fn"])
+    config_fn = os.path.join(paths_dict['config'], GLOBAL_VARS.BASE_FILE_NAMES_DICT["config_fn"])
     with open(config_fn, 'r') as json_file:
         config_dict = json.load(json_file)
     return config_dict

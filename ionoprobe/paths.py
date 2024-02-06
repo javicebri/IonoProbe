@@ -4,11 +4,11 @@ import os
 
 def get_paths(root):
     paths_dict = {
-        'config': os.path.join(root, GLOBAL_VARS.base_path_names_dict['config']),
-        'data': os.path.join(root, GLOBAL_VARS.base_path_names_dict['data']),
-        'data_DIGISONDE': os.path.join(root, GLOBAL_VARS.base_path_names_dict['data_DIGISONDE']),
-        'logs': os.path.join(root, GLOBAL_VARS.base_path_names_dict['logs']),
-        'output': os.path.join(root, GLOBAL_VARS.base_path_names_dict['output'])
+        'config': os.path.join(root, GLOBAL_VARS.BASE_PATH_NAMES_DICT['config']),
+        'data': os.path.join(root, GLOBAL_VARS.BASE_PATH_NAMES_DICT['data']),
+        'data_DIGISONDE': os.path.join(root, GLOBAL_VARS.BASE_PATH_NAMES_DICT['data_DIGISONDE']),
+        'logs': os.path.join(root, GLOBAL_VARS.BASE_PATH_NAMES_DICT['logs']),
+        'output': os.path.join(root, GLOBAL_VARS.BASE_PATH_NAMES_DICT['output'])
     }
     return paths_dict
 
@@ -25,6 +25,6 @@ def add_config_paths(root, paths_dict, config):
     paths_dict['GOES_SWPC_NOAA_url'] = config['GOES_SWPC_NOAA_url']
     paths_dict['DIGISONDE_image_url'] = config['DIGISONDE_image_url']
     paths_dict['DIGISONDE_GIRO_url'] = config['DIGISONDE_GIRO_url']
-    paths_dict['data_DIGISONDE_feather_f'] = os.path.join(paths_dict['output'], GLOBAL_VARS.base_file_names_dict['data_DIGISONDE_feather_fn'])
+    paths_dict['data_DIGISONDE_feather_f'] = os.path.join(paths_dict['output'], GLOBAL_VARS.BASE_FILE_NAMES_DICT['data_DIGISONDE_feather_fn'])
     return paths_dict
 

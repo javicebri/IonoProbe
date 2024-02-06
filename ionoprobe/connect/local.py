@@ -15,8 +15,8 @@ def store_local_postgresql(table_name, df):
     db_name=os.getenv('LOCAL_POSTGRESQL_DATABASE')
     user=os.getenv('LOCAL_POSTGRESQL_USER')
     password=os.getenv('LOCAL_POSTGRESQL_PASS')
-    host=GLOBAL_VARS.local_postgresql_host
-    port=GLOBAL_VARS.local_postgresql_port
+    host=GLOBAL_VARS.LOCAL_POSTGRESQL_HOST
+    port=GLOBAL_VARS.LOCAL_POSTGRESQL_PORT
 
     engine = psycopg2.connect(
         database=db_name,

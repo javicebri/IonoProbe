@@ -9,13 +9,13 @@ header_art = "\n"\
              "Y888888P  `Y88P'  VP   V8P  `Y88P'  88      88   YD  `Y88P'  Y8888P' Y88888P\n"
 
 
-debug_mode = True
+DEBUG_MODE = True
 
-local_postgresql_host = "127.0.0.1"
-local_postgresql_port = "5432"
+LOCAL_POSTGRESQL_HOST = "127.0.0.1"
+LOCAL_POSTGRESQL_PORT = "5432"
 
 # Base path names
-base_path_names_dict = {
+BASE_PATH_NAMES_DICT = {
     'config': 'config',
     'data': 'data',
     'data_DIGISONDE': os.path.join('data', 'digisonde'),
@@ -24,17 +24,17 @@ base_path_names_dict = {
 }
 
 # Base file names
-base_file_names_dict = {
+BASE_FILE_NAMES_DICT = {
     'config_fn': 'config.json',
     'data_DIGISONDE_feather_fn': 'digisonde_data.feather',
 }
 
 
-s3_bucket_name = "ionoprobe"
+S3_BUCKET_NAME = "ionoprobe"
 
 # GOES DATA
 GOES_SWPC_NOAA_s3_path = "GOES_SWPC_NOAA"
-db_names = {
+DB_NAMES = {
     "differential_electrons": "differential_electrons",
     "differential_protons": "differential_protons",
     "integral_electrons": "integral_electrons",
@@ -52,11 +52,11 @@ db_names = {
 
 
 # DIGISONDE DATA
-station_legend = ['Station', 'YYYY', 'DAY', 'DDD', 'HHNMSS', 'P1', 'FFS', 'S', 'AXN', 'PPS', 'IGA', 'PS']
-f_legend = ['foF2', 'foF1', 'foF1p', 'foFE', 'foFEp', 'fxI', 'foEs', 'fmin']
+STATION_LEGEND = ['Station', 'YYYY', 'DAY', 'DDD', 'HHNMSS', 'P1', 'FFS', 'S', 'AXN', 'PPS', 'IGA', 'PS']
+F_LEGEND = ['foF2', 'foF1', 'foF1p', 'foFE', 'foFEp', 'fxI', 'foEs', 'fmin']
 
 # DIGISONDE GIRO STATIONS (COOR, NAME, COUNTRY)
-# sta_dict = {"EB040": ("40.8N", "0.5E", "ROQUETES", "SPAIN"),
+# STA_DICT = {"EB040": ("40.8N", "0.5E", "ROQUETES", "SPAIN"),
 #             "EA036": ("37.1N", "353.3E", "EL ARENOSILLO", "SPAIN"),
 #             "AT138": ("38.0N", "23.5E", "ATHENS", "GREECE"),
 #             "AU930": ("30.4N", "262.3E", "AUSTIN", "USA"),
@@ -97,11 +97,12 @@ f_legend = ['foF2', 'foF1', 'foF1p', 'foFE', 'foFEp', 'fxI', 'foEs', 'fmin']
 #             } 
 
 # Test
-sta_dict = {"EB040": ("40.8N", "0.5E", "ROQUETES", "SPAIN"),
+STA_DICT = {"EB040": ("40.8N", "0.5E", "ROQUETES", "SPAIN"),
             } 
 
 DIGISONDE_GIRO_fn = "digisonde_giro_raw"
 DIGISONDE_GIRO_s3_path = "DIGISONDE_GIRO"
+DIGISONDE_GIRO_TABLE_NAME = "digisonde_giro"
 
 # Each data must be request in a different get
 DIGISONDE_GIRO_data = {"foF2": "F2 layer critical frequency",

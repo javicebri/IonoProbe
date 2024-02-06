@@ -119,7 +119,7 @@ class DIGISONDE_GIRO(Connect):
         @return: DataFrame
         """
         # Get a tuple of each combination ESTATION <-> DATA
-        req_couples_list = list(itertools.product(GLOBAL_VARS.sta_dict.keys(), GLOBAL_VARS.DIGISONDE_GIRO_data.keys()))
+        req_couples_list = list(itertools.product(GLOBAL_VARS.STA_DICT.keys(), GLOBAL_VARS.DIGISONDE_GIRO_data.keys()))
 
         total_df = pd.DataFrame() # DF Container of all new data
         # For each station
@@ -168,12 +168,12 @@ class DIGISONDE_GIRO(Connect):
         @return: None
         """
         f_name = GLOBAL_VARS.DIGISONDE_GIRO_fn + "_" + self.config['date_hour_str'] + ".csv"
-        store_in_s3(bucket_name = GLOBAL_VARS.s3_bucket_name, 
+        store_in_s3(bucket_name = GLOBAL_VARS.S3_BUCKET_NAME, 
                     s3_path = GLOBAL_VARS.DIGISONDE_GIRO_s3_path, 
                     file_name = f_name, 
                     data = df)
     
-    def _save_local_postgresql(self, df_dict):
+    def _save_local_postgresql(self, df):
         """
         Iterate reqs
 
@@ -181,8 +181,7 @@ class DIGISONDE_GIRO(Connect):
         @type paths_dict: df
         @return: None
         """
-        for key_i, df_i in df_dict.items():
-            store_local_postgresql(db_name=key_i, df=df_i)
+        store_local_postgresql(db_name=GLOBAL_VARS.DIGISONDE_GIRO_TABLE_NAME, df=df)
 
     def download(self, url_dict, target):
         """
@@ -196,11 +195,11 @@ class DIGISONDE_GIRO(Connect):
         """
         store_rds_postgresql()
 
-        if GLOBAL_VARS.debug_mode:
+        if GLOBAL_VARS.DEBUG_MODE:
             df = pd.read_csv()
         else:
             df = self._get_url_dict(url_dict)
-            
+
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df)

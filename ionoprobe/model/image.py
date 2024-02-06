@@ -40,7 +40,7 @@ def transform_str_to_df(image_str):
     # Extract Station Name, Date and General Data
     # station_legend_pos = next((i for i, elem in enumerate(image_list) if elem.startswith('Station')), None)
     # station_legend = image_list[station_legend_pos].replace("_","").split(" ")
-    station_legend = GLOBAL_VARS.station_legend
+    station_legend = GLOBAL_VARS.STATION_LEGEND
     station_data = image_list[4].split(" ")
     if not len(station_data) == len(station_legend):
         logger.error('Error station_legend DIGISONDE ETL')
