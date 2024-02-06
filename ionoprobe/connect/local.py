@@ -14,5 +14,5 @@ def store_local_postgresql(db_name, df):
         user=os.getenv('LOCAL_POSTGRESQL_USER'),
         password=os.getenv('LOCAL_POSTGRESQL_PASS'),
         host=GLOBAL_VARS.local_postgresql_host,
-        port=GLOBAL_VARS.local_postgesql_port
+        port=GLOBAL_VARS.local_postgresql_port
     )
