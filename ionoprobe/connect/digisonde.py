@@ -7,10 +7,12 @@ import itertools
 import GLOBAL_VARS
 import pandas as pd
 
-from .aws import store_in_s3
+from .aws import store_in_s3, store_rds_postgresql
 from logger import logger
 from .connect import Connect
 from tools.datetools import get_now_date_str
+from .local import store_local_postgresql
+
 
 
 class DIGISONDE_GIRO(Connect):
@@ -161,8 +163,8 @@ class DIGISONDE_GIRO(Connect):
         """
         Save CSV files in AWS S3
 
-        @param df_dict: dict with dataframes to be saved
-        @type paths_dict: dict
+        @param df: dataframe to be saved
+        @type paths_dict: df
         @return: None
         """
         f_name = GLOBAL_VARS.DIGISONDE_GIRO_fn + "_" + self.config['date_hour_str'] + ".csv"
@@ -170,6 +172,17 @@ class DIGISONDE_GIRO(Connect):
                     s3_path = GLOBAL_VARS.DIGISONDE_GIRO_s3_path, 
                     file_name = f_name, 
                     data = df)
+    
+    def _save_local_postgresql(self, df_dict):
+        """
+        Iterate reqs
+
+        @param df: dataframe to be saved
+        @type paths_dict: df
+        @return: None
+        """
+        for key_i, df_i in df_dict.items():
+            store_local_postgresql(db_name=key_i, df=df_i)
 
     def download(self, url_dict, target):
         """
@@ -181,9 +194,13 @@ class DIGISONDE_GIRO(Connect):
         @type target: list
         @return: None
         """
+        store_rds_postgresql()
+
         df = self._get_url_dict(url_dict)
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df)
             if target_i == "s3_csv":
                 self._save_s3_csv(df)
+            if target_i == "local_postgresql":
+                self._save_local_postgresql(df)

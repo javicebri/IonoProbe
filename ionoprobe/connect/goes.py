@@ -7,7 +7,8 @@ import pandas as pd
 
 from logger import logger
 from .connect import Connect
-from .aws import store_in_s3, store_in_postgresql
+from .aws import store_in_s3, store_rds_postgresql
+from .local import store_local_postgresql
 
 
 class GOES_SWPC_NOAA(Connect):
@@ -77,7 +78,7 @@ class GOES_SWPC_NOAA(Connect):
                         file_name = f_name, 
                         data = df_i)
 
-    def _save_postgresql(self, df_dict):
+    def _save_local_postgresql(self, df_dict):
         """
         Iterate reqs
 
@@ -85,13 +86,8 @@ class GOES_SWPC_NOAA(Connect):
         @type paths_dict: dict
         @return: None
         """
-        # for key_i, df_i in df_dict.items():
-        #     f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
-        #     store_in_postgresql(bucket_name = GLOBAL_VARS.s3_bucket_name, 
-        #                         s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
-        #                         file_name = f_name, 
-        #                         data = df_i)
-        pass
+        for key_i, df_i in df_dict.items():
+            store_local_postgresql(db_name=key_i, df=df_i)
 
     def download(self, url_dict, target):
         """
@@ -109,3 +105,5 @@ class GOES_SWPC_NOAA(Connect):
                 self._save_local_csv(df_dict)
             if target_i == "s3_csv":
                 self._save_s3_csv(df_dict)
+            if target_i == "local_postgresql":
+                self._save_local_postgresql(df_dict)

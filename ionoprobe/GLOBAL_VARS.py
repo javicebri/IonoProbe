@@ -8,6 +8,11 @@ header_art = "\n"\
              "  .88.   `8b  d8' 88  V888 `8b  d8' 88      88 `88. `8b  d8' 88   8D 88.    \n"\
              "Y888888P  `Y88P'  VP   V8P  `Y88P'  88      88   YD  `Y88P'  Y8888P' Y88888P\n"
 
+
+
+local_postgresql_host = "127.0.0.1"
+local_postgresql_port = "5432"
+
 # Base path names
 base_path_names_dict = {
     'config': 'config',
@@ -28,6 +33,17 @@ s3_bucket_name = "ionoprobe"
 
 # GOES DATA
 GOES_SWPC_NOAA_s3_path = "GOES_SWPC_NOAA"
+db_names = {
+    "differential_electrons": "differential_electrons",
+    "differential_protons": "differential_protons",
+    "integral_electrons": "integral_electrons",
+    "integral_protons": "integral_protons",
+    "integral_protons-plot": "integral_protons-plot",
+    "magnetometers": "magnetometers",
+    "xray_background": "xray_background",
+    "xray_flares": "xray_flares",
+    "xrays": "xrays",
+}
 
 
 
