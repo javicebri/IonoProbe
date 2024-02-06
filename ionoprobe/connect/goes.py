@@ -87,7 +87,7 @@ class GOES_SWPC_NOAA(Connect):
         @return: None
         """
         for key_i, df_i in df_dict.items():
-            store_local_postgresql(db_name=key_i, df=df_i)
+            store_local_postgresql(table_name=key_i, df=df_i)
 
     def download(self, url_dict, target):
         """
