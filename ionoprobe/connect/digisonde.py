@@ -164,7 +164,7 @@ class DIGISONDE_GIRO(Connect):
         Save CSV files in AWS S3
 
         @param df: dataframe to be saved
-        @type paths_dict: df
+        @type df: df
         @return: None
         """
         f_name = GLOBAL_VARS.DIGISONDE_GIRO_fn + "_" + self.config['date_hour_str'] + ".csv"
@@ -178,11 +178,21 @@ class DIGISONDE_GIRO(Connect):
         Iterate reqs
 
         @param df: dataframe to be saved
-        @type paths_dict: df
+        @type df: df
         @return: None
         """
         store_local_postgresql(db_name=GLOBAL_VARS.DIGISONDE_GIRO_TABLE_NAME, df=df)
 
+    def _transform_df(self, df):
+        """
+        Agrupate rows around the time in 00, 15, 30, 45 
+
+        @param df: dataframe to be transformed
+        @type df: df
+        @return: df
+        """
+        pass
+    
     def download(self, url_dict, target):
         """
         For each url save the output target type
