@@ -192,7 +192,7 @@ class DIGISONDE_GIRO(Connect):
         @return: df
         """
         pass
-    
+
     def download(self, url_dict, target):
         """
         For each url save the output target type
@@ -203,17 +203,17 @@ class DIGISONDE_GIRO(Connect):
         @type target: list
         @return: None
         """
-        store_rds_postgresql()
-
         if GLOBAL_VARS.DEBUG_MODE:
-            df = pd.read_csv()
+            df_raw = pd.read_csv()
         else:
-            df = self._get_url_dict(url_dict)
+            df_raw = self._get_url_dict(url_dict)
 
         for target_i in target:
             if target_i.lower() == "local_csv":
-                self._save_local_csv(df)
+                self._save_local_csv(df_raw)
             if target_i == "s3_csv":
-                self._save_s3_csv(df)
+                self._save_s3_csv(df_raw)
             if target_i == "local_postgresql":
-                self._save_local_postgresql(df)
+                self._save_local_postgresql(df_raw)
+        
+        df = self._transform_df(df_raw)
