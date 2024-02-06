@@ -196,7 +196,11 @@ class DIGISONDE_GIRO(Connect):
         """
         store_rds_postgresql()
 
-        df = self._get_url_dict(url_dict)
+        if GLOBAL_VARS.debug_mode:
+            df = pd.read_csv()
+        else:
+            df = self._get_url_dict(url_dict)
+            
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df)

@@ -99,7 +99,12 @@ class GOES_SWPC_NOAA(Connect):
         @type target: list
         @return: None
         """
-        df_dict = self._get_url_dict(url_dict)
+        if GLOBAL_VARS.debug_mode:
+            df_dict = {}
+            df_dict['differential_electrons'] = pd.read_csv(os.environ['DEBUG_MODE_GOES_FPATH'], sep=';')
+        else:
+            df_dict = self._get_url_dict(url_dict)
+
         for target_i in target:
             if target_i.lower() == "local_csv":
                 self._save_local_csv(df_dict)

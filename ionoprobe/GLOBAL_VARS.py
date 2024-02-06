@@ -9,6 +9,7 @@ header_art = "\n"\
              "Y888888P  `Y88P'  VP   V8P  `Y88P'  88      88   YD  `Y88P'  Y8888P' Y88888P\n"
 
 
+debug_mode = True
 
 local_postgresql_host = "127.0.0.1"
 local_postgresql_port = "5432"
