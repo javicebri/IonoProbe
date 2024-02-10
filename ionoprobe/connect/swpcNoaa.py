@@ -11,7 +11,7 @@ from .aws import store_in_s3, store_rds_postgresql
 from .local import store_local_postgresql
 
 
-class GOES_SWPC_NOAA(Connect):
+class SWPC_NOAA(Connect):
     def __init__(self, paths_dict, config):
         super().__init__(paths_dict, config)
 
@@ -41,6 +41,7 @@ class GOES_SWPC_NOAA(Connect):
         """
         df_dict = {}
         for key_i, url_i in url_dict.items():
+            logger.info(f' - Req {key_i}')
             df = self._get_url(url_i)
             df_dict[key_i] = df
             time.sleep(1)      
@@ -54,7 +55,7 @@ class GOES_SWPC_NOAA(Connect):
         @type paths_dict: dict
         @return: None
         """
-        folder_path = os.path.join(self.paths_dict['output'], GLOBAL_VARS.GOES_SWPC_NOAA_s3_path)
+        folder_path = os.path.join(self.paths_dict['output'], GLOBAL_VARS.SWPC_NOAA_s3_path)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -74,7 +75,7 @@ class GOES_SWPC_NOAA(Connect):
         for key_i, df_i in df_dict.items():
             f_name = key_i + "_" + self.config['date_hour_str'] + ".csv"
             store_in_s3(bucket_name = GLOBAL_VARS.S3_BUCKET_NAME, 
-                        s3_path = GLOBAL_VARS.GOES_SWPC_NOAA_s3_path, 
+                        s3_path = GLOBAL_VARS.SWPC_NOAA_s3_path, 
                         file_name = f_name, 
                         data = df_i)
 

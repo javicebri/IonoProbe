@@ -9,7 +9,7 @@ header_art = "\n"\
              "Y888888P  `Y88P'  VP   V8P  `Y88P'  88      88   YD  `Y88P'  Y8888P' Y88888P\n"
 
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 LOCAL_POSTGRESQL_HOST = "127.0.0.1"
 LOCAL_POSTGRESQL_PORT = "5432"
@@ -33,7 +33,7 @@ BASE_FILE_NAMES_DICT = {
 S3_BUCKET_NAME = "ionoprobe"
 
 # GOES DATA
-GOES_SWPC_NOAA_s3_path = "GOES_SWPC_NOAA"
+SWPC_NOAA_s3_path = "SWPC_NOAA"
 DB_NAMES = {
     "differential_electrons": "differential_electrons",
     "differential_protons": "differential_protons",
