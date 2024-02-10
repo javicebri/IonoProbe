@@ -34,17 +34,40 @@ S3_BUCKET_NAME = "ionoprobe"
 
 # GOES DATA
 SWPC_NOAA_s3_path = "SWPC_NOAA"
-DB_NAMES = {
-    "differential_electrons": "differential_electrons",
-    "differential_protons": "differential_protons",
-    "integral_electrons": "integral_electrons",
-    "integral_protons": "integral_protons",
-    "integral_protons-plot": "integral_protons-plot",
-    "magnetometers": "magnetometers",
-    "xray_background": "xray_background",
-    "xray_flares": "xray_flares",
-    "xrays": "xrays",
-}
+
+# Data structure give information about each table:
+# Groupable means that can be promediated in blocks of time. 
+# Continous cols can be promediated
+# Categorical cols must remain categorized (cannot be promediated)  
+# Time is the timestamp col.
+SWPC_NOAA_STRUCTURE = {
+      "differential_electrons": {"Time": "time_tag", "categorical": ["satellite", "energy"], "continuous": ["flux"], "groupable": True},
+      "differential_protons": {"Time": "time_tag", "categorical": ["satellite", "energy", "yaw_flip", "channel"], "continuous": ["flux"], "groupable": True},
+      "integral_electrons": {"Time": "time_tag", "categorical": ["satellite", "energy"], "continuous": ["flux"], "groupable": True},
+      "integral_protons": {"Time": "time_tag", "categorical": ["satellite", "energy"], "continuous": ["flux"], "groupable": True},
+      "integral_protons-plot": {"Time": "time_tag", "categorical": ["satellite", "energy"], "continuous": ["flux"], "groupable": True},
+      "magnetometers": {"Time": "time_tag", "categorical": ["satellite", "arcjet_flag"], "continuous": ["He","Hp", "Hn" "total"], "groupable": True},
+      "xray_background": {"Time": "time_tag", "categorical": ["satellite"], "continuous": ["background"], "groupable": True},
+      "xray_flares": {"Time": "time_tag", "categorical": [], "continuous": [], "groupable": False},
+      "xrays": {"Time": "time_tag", "categorical": ["satellite", "electron_contaminaton", "energy"], "continuous": ["flux", "observed_flux", "electron_correction"], "groupable": True},
+      "solar_wind_mag": {"Time": "time_tag", "categorical": [], "continuous": ["bx_gsm", "by_gsm", "bz_gsm", "lon_gsm", "lat_gsm", "bt"], "groupable": True},
+      "solar_wind_plasma": {"Time": "time_tag", "categorical": [], "continuous": ["density", "speed", "temperature"], "groupable": True},
+      "10cm_solar_flux": {"Time": "time_tag", "categorical": [], "continuous": ["flux"], "groupable": True},
+      "alerts": {"Time": "", "categorical": [], "continuous": [], "groupable": False},
+      "kyoto_dst": {"Time": "time_tag", "categorical": [], "continuous": ["dst"], "groupable": True},
+      "planetary_k_index_prediction": {"Time": "time_tag", "categorical": ["noaa_scale"], "continuous": ["kp", "observed"], "groupable": False},
+      "planetary_k_index": {"Time": "time_tag", "categorical": ["station_count"], "continuous": ["Kp","a_running"], "groupable": False},
+      "scale_pred": {"Time": "", "categorical": [], "continuous": [], "groupable": False},
+      "observed-solar-cycle-indices": {"Time": "time-tag", "categorical": [], "continuous": ["ssn", "smoothed_ssn", "observed_swpc_ssn", "smoothed_swpc_ssn", "f10.7", "smoothed_f10.7"],
+                                       "groupable": True},
+      "sunspots-smoothed": {"Time": "time-tag", "categorical": [], "continuous": ["smoothed_ssn"], "groupable": True},
+      "sunspots": {"Time": "time-tag", "categorical": [], "continuous": ["ssn"], "groupable": True},
+      "sunspots-day": {"Time": "Obsdate", "categorical": [], "continuous": ["swpc_ssn"], "groupable": True},
+      "boulder_k": {"Time": "time_tag", "categorical": [], "continuous": ["k_index"], "groupable": True},
+      "f107_cm_flux": {"Time": "time_tag", "categorical": ["frequency", "reporting_schedule"], "continuous": ["flux", "avg_begin_date", "ninety_day_mean", "rec_count"], "groupable": True},
+      "solar_regions": {"Time": "", "categorical": [], "continuous": [], "groupable": False},
+      "sunspot_report": {"Time": "", "categorical": [], "continuous": [], "groupable": False}
+    }
 
 
 

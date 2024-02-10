@@ -98,8 +98,9 @@ class SWPC_NOAA(Connect):
         @type df_dict: dict
         @return: dict
         """
+        tf_df = {}
         for key_i, df_i in df_dict.items():
-           pass
+           tf_df[key_i] =
 
     def download(self, url_dict, target):
         """
